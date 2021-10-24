@@ -6,7 +6,7 @@ RUN npm install && \
     rm -rf node_modules && \
     npm ci --only=production
 
-FROM gcr.io/distroless/nodejs:14-debug
+FROM gcr.io/distroless/nodejs:14
 COPY --from=builder /src/build /src/build
 COPY --from=builder /src/node_modules /src/node_modules
 WORKDIR /src

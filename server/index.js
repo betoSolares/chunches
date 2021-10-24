@@ -4,18 +4,12 @@ import path from "path";
 const app = express();
 
 if (process.env.NODE_ENV === "development") {
-  app.use(express.static(path.join(__dirname+'/../build/client')));
+  app.use(express.static(path.join(`${__dirname}/../build/client`)));
 } else {
-  app.use(express.static(path.join(__dirname+'/../client')));
+  app.use(express.static(path.join(`${__dirname}/../client`)));
 }
 
 app.get("/api/hola", (_, res) => {
-  console.log("juan")
-
-  console.log("API");
-  console.log(process.env.PORT);
-  console.log(process.env.NODE_ENV);
-
   const today = new Date();
   const date = `${today.getFullYear()}-${
     today.getMonth() + 1
@@ -24,17 +18,12 @@ app.get("/api/hola", (_, res) => {
   res.json({ date, time });
 });
 
-app.get('*', (_, res) => {
-  console.log("FILE");
-  console.log(process.env.PORT);
-  console.log(process.env.NODE_ENV);
-
+app.get("*", (_, res) => {
   if (process.env.NODE_ENV === "development") {
-    res.sendFile(path.join(__dirname+'/../build/client/index.html'));
+    res.sendFile(path.join(`${__dirname}/../build/client/index.html`));
   } else {
-    res.sendFile(path.join(__dirname+'/../client/index.html'));
+    res.sendFile(path.join(`${__dirname}/../client/index.html`));
   }
 });
-
 
 app.listen(process.env.PORT || 3000);
