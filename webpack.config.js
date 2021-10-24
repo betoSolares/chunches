@@ -3,7 +3,7 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
 
-module.exports = function (_env, argv) {
+module.exports = function webpackConfig(_env, argv) {
   const isProduction = argv.mode === "production";
   const isDevelopment = !isProduction;
 
