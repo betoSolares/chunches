@@ -1,0 +1,13 @@
+FROM node:14-alpine AS builder
+WORKDIR /src
+COPY . .
+RUN npm install && \
+    npm run build && \
+    rm -rf node_modules && \
+    npm ci --only=production
+
+FROM gcr.io/distroless/nodejs:14-debug
+COPY --from=builder /src/build /src/build
+COPY --from=builder /src/node_modules /src/node_modules
+WORKDIR /src
+CMD ["/src/build/server/index.js"]

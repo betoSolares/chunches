@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: npm run dev
+    image: alba:dev
+    ports:
+      - '${PORT}:${PORT}'
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - PORT=${PORT}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST=database
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - WORK_FACTOR=${WORK_FACTOR}
+      - TOKEN_SECRET=${TOKEN_SECRET}
+    volumes:
+      - .:/src
+      - nodemodules:/src/node_modules
+
+  database:
+    image: postgres
+    container_name: chunches_db
+    restart: unless-stopped
+    ports:
+      - '${POSTGRES_PORT}:${POSTGRES_PORT}'
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - ./data/:/var/lib/postgresql/data/
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
+
+volumes:
+  nodemodules: {}
