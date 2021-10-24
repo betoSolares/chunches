@@ -12,7 +12,7 @@ const App = () => {
 
   return (
     <>
-      <h1>Hola Mundo v2</h1>
+      <h1>Hola Mundo</h1>
       <button onClick={getDate}>Press me</button>
       <p>{text}</p>
     </>
