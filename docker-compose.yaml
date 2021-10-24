@@ -6,7 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     command: npm run dev
-    image: alba:dev
+    container_name: chunches_app
+    image: chunches:dev
     ports:
       - '${PORT}:${PORT}'
     environment:
