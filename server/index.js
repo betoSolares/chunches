@@ -10,6 +10,12 @@ if (process.env.NODE_ENV === "development") {
 }
 
 app.get("/api/hola", (_, res) => {
+  console.log("juan")
+
+  console.log("API");
+  console.log(process.env.PORT);
+  console.log(process.env.NODE_ENV);
+
   const today = new Date();
   const date = `${today.getFullYear()}-${
     today.getMonth() + 1
@@ -19,16 +25,16 @@ app.get("/api/hola", (_, res) => {
 });
 
 app.get('*', (_, res) => {
+  console.log("FILE");
+  console.log(process.env.PORT);
   console.log(process.env.NODE_ENV);
 
   if (process.env.NODE_ENV === "development") {
-    console.log(path.join(__dirname+'/../build/client/index.html'));
     res.sendFile(path.join(__dirname+'/../build/client/index.html'));
   } else {
     res.sendFile(path.join(__dirname+'/../client/index.html'));
   }
 });
 
-console.log("HERE");
-console.log(process.env.PORT);
+
 app.listen(process.env.PORT || 3000);
