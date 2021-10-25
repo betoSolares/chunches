@@ -1,21 +1,20 @@
-import React, { useState } from "react";
+import { ChakraProvider } from "@chakra-ui/react";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import { ScrollToTop } from "../components";
+import SignUpPage from "./signup";
 
 const App = () => {
-  const [text, setText] = useState("No call yet");
-
-  const getDate = async () => {
-    const response = await fetch("/api/hola");
-    const data = await response.json();
-
-    setText(`The datetime is: ${data.date} ${data.time}`);
-  };
-
   return (
-    <>
-      <h1>Hola Mundo CLEAN</h1>
-      <button onClick={getDate}>Press me</button>
-      <p>{text}</p>
-    </>
+    <ChakraProvider>
+      <Router>
+        <ScrollToTop />
+        <Switch>
+          <Route path="/signup" exact component={SignUpPage} />
+        </Switch>
+      </Router>
+    </ChakraProvider>
   );
 };
 
