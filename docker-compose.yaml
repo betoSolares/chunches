@@ -18,6 +18,7 @@ services:
       - POSTGRES_HOST=database
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_SSLMODE=${POSTGRES_SSLMODE}
       - WORK_FACTOR=${WORK_FACTOR}
       - TOKEN_SECRET=${TOKEN_SECRET}
     volumes:
