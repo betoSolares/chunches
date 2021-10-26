@@ -8,12 +8,17 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 
 const SignUpPage = () => {
+  const history = useHistory();
+  const auth = localStorage.getItem("WDYBYC_AUTHENTICATED") ?? false;
+  if (auth) {
+    history.push("/search");
+  }
+
   const [showPassword, setShowPassword] = useState(false);
   const [failedForm, setFailedForm] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [formInfo, setFormInfo] = useState({});
-  const history = useHistory();
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
