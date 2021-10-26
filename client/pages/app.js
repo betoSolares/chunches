@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { ScrollToTop } from "../components";
+import SearcherPage from "./searcher";
 import SignUpPage from "./signup";
 
 const App = () => {
@@ -11,6 +12,8 @@ const App = () => {
       <Router>
         <ScrollToTop />
         <Switch>
+          <Route path="/" exact component={SearcherPage} />
+          <Route path="/searcher" exact component={SearcherPage} />
           <Route path="/signup" exact component={SignUpPage} />
         </Switch>
       </Router>

@@ -5,6 +5,7 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { Box, Flex, Heading, Link, Stack } from "@chakra-ui/layout";
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,6 +13,7 @@ const SignUpPage = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [formInfo, setFormInfo] = useState({});
+  const history = useHistory();
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -19,6 +21,15 @@ const SignUpPage = () => {
 
   const handleTextChange = (event) => {
     setFormInfo({ ...formInfo, [event.target.name]: event.target.value });
+  };
+
+  const authenticate = (data) => {
+    const currentDate = Math.floor(Date.now() / 1000);
+    const futureDate = currentDate + 2629800;
+    localStorage.setItem("WDYBYC_TOKEN", data.token);
+    localStorage.setItem("WDYBYC_EXPIRATION", futureDate);
+    localStorage.setItem("WDYBYC_AUTHENTICATED", true);
+    history.push("/");
   };
 
   const submitForm = async () => {
@@ -40,6 +51,7 @@ const SignUpPage = () => {
     if (res.ok) {
       setFailedForm(false);
       setShowAlert(true);
+      authenticate(data);
     }
   };
 
