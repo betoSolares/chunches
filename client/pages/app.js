@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { ScrollToTop } from "../components";
 import LogInPage from "./login";
-import SearcherPage from "./searcher";
+import SearchPage from "./search";
 import SignUpPage from "./signup";
 
 const App = () => {
@@ -13,8 +13,8 @@ const App = () => {
       <Router>
         <ScrollToTop />
         <Switch>
-          <Route path="/" exact component={SearcherPage} />
-          <Route path="/searcher" exact component={SearcherPage} />
+          <Route path="/" exact component={SearchPage} />
+          <Route path="/search" exact component={SearchPage} />
           <Route path="/signup" exact component={SignUpPage} />
           <Route path="/login" exact component={LogInPage} />
         </Switch>
