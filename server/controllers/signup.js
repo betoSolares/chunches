@@ -33,7 +33,7 @@ const signup = async (body) => {
     throw error;
   }
 
-  const token = createToken(user.user_id, user.username);
+  const token = createToken(user.user_id, user.email);
 
   return {
     code: 200,
