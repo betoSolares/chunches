@@ -10,8 +10,9 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
+import PropTypes from "prop-types";
 import React from "react";
-import {useHistory} from "react-router";
+import { useHistory } from "react-router";
 
 const NavBar = ({ authenticated }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -126,6 +127,10 @@ const NavBar = ({ authenticated }) => {
       ) : null}
     </Box>
   );
+};
+
+NavBar.propTypes = {
+  authenticated: PropTypes.bool.isRequired,
 };
 
 export default NavBar;
