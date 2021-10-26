@@ -1,4 +1,4 @@
-import { AddIcon, CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -11,9 +11,20 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
+import {useHistory} from "react-router";
 
-const NavBar = () => {
+const NavBar = ({ authenticated }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const history = useHistory();
+
+  const redirect = (path) => {
+    history.push(path);
+  };
+
+  const logOut = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
 
   return (
     <Box bg={useColorModeValue("gray.50", "gray.900")} px={8}>
@@ -37,24 +48,39 @@ const NavBar = () => {
         </HStack>
         <Flex alignItems={"center"}>
           <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
-            <Button
-              variant={"solid"}
-              colorScheme={"teal"}
-              size={"sm"}
-              mr={4}
-              leftIcon={<AddIcon />}
-            >
-              Action
-            </Button>
-            <Button
-              variant={"solid"}
-              colorScheme={"teal"}
-              size={"sm"}
-              mr={4}
-              leftIcon={<AddIcon />}
-            >
-              Action
-            </Button>
+            {authenticated && (
+              <Button
+                variant={"solid"}
+                colorScheme={"blue"}
+                size={"sm"}
+                mr={4}
+                onClick={logOut}
+              >
+                Log out
+              </Button>
+            )}
+            {!authenticated && (
+              <>
+                <Button
+                  variant={"solid"}
+                  colorScheme={"blue"}
+                  size={"sm"}
+                  mr={4}
+                  onClick={() => redirect("/login")}
+                >
+                  Log In
+                </Button>
+                <Button
+                  variant={"solid"}
+                  colorScheme={"blue"}
+                  size={"sm"}
+                  mr={4}
+                  onClick={() => redirect("/signup")}
+                >
+                  Sign Up
+                </Button>
+              </>
+            )}
           </HStack>
         </Flex>
       </Flex>
@@ -62,24 +88,39 @@ const NavBar = () => {
       {isOpen ? (
         <Box pb={4} display={{ md: "none" }}>
           <Stack as={"nav"} spacing={4}>
-            <Button
-              variant={"solid"}
-              colorScheme={"teal"}
-              size={"sm"}
-              mr={4}
-              leftIcon={<AddIcon />}
-            >
-              Action
-            </Button>
-            <Button
-              variant={"solid"}
-              colorScheme={"teal"}
-              size={"sm"}
-              mr={4}
-              leftIcon={<AddIcon />}
-            >
-              Action
-            </Button>
+            {authenticated && (
+              <Button
+                variant={"solid"}
+                colorScheme={"blue"}
+                size={"sm"}
+                mr={4}
+                onClick={logOut}
+              >
+                Log out
+              </Button>
+            )}
+            {!authenticated && (
+              <>
+                <Button
+                  variant={"solid"}
+                  colorScheme={"blue"}
+                  size={"sm"}
+                  mr={4}
+                  onClick={() => redirect("/login")}
+                >
+                  Log In
+                </Button>
+                <Button
+                  variant={"solid"}
+                  colorScheme={"blue"}
+                  size={"sm"}
+                  mr={4}
+                  onClick={() => redirect("/signup")}
+                >
+                  Sign Up
+                </Button>
+              </>
+            )}
           </Stack>
         </Box>
       ) : null}
