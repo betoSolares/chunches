@@ -95,6 +95,7 @@ const NavBar = ({ authenticated }) => {
                 colorScheme={"blue"}
                 size={"sm"}
                 mr={4}
+                width="full"
                 onClick={logOut}
               >
                 Log out
@@ -107,6 +108,7 @@ const NavBar = ({ authenticated }) => {
                   colorScheme={"blue"}
                   size={"sm"}
                   mr={4}
+                  width="full"
                   onClick={() => redirect("/login")}
                 >
                   Log In
@@ -116,6 +118,7 @@ const NavBar = ({ authenticated }) => {
                   colorScheme={"blue"}
                   size={"sm"}
                   mr={4}
+                  width="full"
                   onClick={() => redirect("/signup")}
                 >
                   Sign Up
