@@ -21,6 +21,8 @@ services:
       - POSTGRES_SSLMODE=${POSTGRES_SSLMODE}
       - WORK_FACTOR=${WORK_FACTOR}
       - TOKEN_SECRET=${TOKEN_SECRET}
+      - SEARCH_KEY=${SEARCH_KEY}
+      - SEARCH_ENDPOINT=${SEARCH_ENDPOINT}
     volumes:
       - .:/src
       - nodemodules:/src/node_modules
