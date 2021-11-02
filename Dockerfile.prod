@@ -11,4 +11,4 @@ COPY --from=builder /src/build /src/build
 COPY --from=builder /src/node_modules /src/node_modules
 RUN pip install requests
 WORKDIR /src
-CMD ["/src/build/server/index.js"]
+CMD ["node", "/src/build/server/index.js"]
