@@ -9,11 +9,11 @@ CREATE TABLE IF NOT EXISTS users (
   CONSTRAINT no_duplicate_user UNIQUE (user_id, email)
 );
 
--- Create table to keep a record of the raitings
-CREATE TABLE IF NOT EXISTS raitings_log (
-  raitings_log_id SERIAL,
+-- Create table to keep a record of the searchs
+CREATE TABLE IF NOT EXISTS search_log (
+  search_log_id SERIAL,
   total int NOT NULL,
-  PRIMARY KEY (raitings_log_id)
+  PRIMARY KEY (search_log_id)
 );
 
 -- Table for the raitings of each user
