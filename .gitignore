@@ -18,6 +18,7 @@ node_modules/
 # Build output
 build
 data
+uploads
 
 # Environment variables
 .env
